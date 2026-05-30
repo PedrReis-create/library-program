@@ -1,30 +1,36 @@
 import tkinter as tk
 from biblioteca import emprestar_livro
+from biblioteca import devolver_livro
+from biblioteca import adicionar_livro
+from biblioteca import listar_livros
+
 
 janela = tk.Tk()
 janela.title('Sistema de biblioteca')
+janela.geometry('400x300')
 
-showinfo = tk.Label(janela, text='Nome do livro:')
-showinfo.pack()
+app_sistema = tk.Frame(janela)
+app_sistema.pack()
 
-entrada_livro = tk.Entry(janela)
+tk.Label(app_sistema, text='Sistema biblioteca').pack()
 
-entrada_usuario = tk.Entry(janela)
+tk.Label(app_sistema, text='Digite seu nome: ').pack()
+usuario_name = tk.Entry(app_sistema)
+usuario_name.pack()
 
-entrada_livro.pack()
-entrada_usuario.pack()
+tk.Label(app_sistema, text='Nome do livro: ').pack() #onde mostra todos os resultados
+livro_get = tk.Entry(app_sistema)
+livro_get.pack()
 
 def emprestar_livro_interface():
-    nome_livro = entrada_livro.get()
-    usuario = entrada_usuario.get()
-    emprestar_livro(nome_livro, usuario)
-    
-botao1 = tk.Button(
-    janela,
-    text='Emprestar',
+    book= livro_get.get()
+    usuario= usuario_name.get()
+    emprestar_livro(book, usuario)
+btnE = tk.Button(app_sistema,
+    text='Emprestar', 
     command=emprestar_livro_interface
 )
-
-botao1.pack()
+btnE.pack()
 
 janela.mainloop()
+
