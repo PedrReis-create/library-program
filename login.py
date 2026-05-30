@@ -1,4 +1,5 @@
 import tkinter as tk
+import interface as it
 
 contas =[
     ('pedro', '123')

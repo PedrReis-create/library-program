@@ -15,11 +15,13 @@ livros = [
 
 
 def emprestar_livro(nome_livro, usuario):
-
+    if not usuario:
+                print('Digite seu nome primeiro')
+                return
     for livro in livros:
 
         if livro['nome'].lower() == nome_livro.lower():
-
+            
             if livro['disponivel']:
 
                 livro['disponivel'] = False
@@ -27,7 +29,6 @@ def emprestar_livro(nome_livro, usuario):
 
                 print('Livro emprestado com sucesso!')
                 return
-
             else:
                 print('Livro já emprestado!')
                 return
