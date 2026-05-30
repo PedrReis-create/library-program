@@ -16,7 +16,7 @@ livros = [
 
 def emprestar_livro(nome_livro, usuario):
     if not usuario:
-                print('Digite seu nome primeiro')
+                return 'Digite seu nome primeiro'
                 return
     for livro in livros:
 
@@ -27,13 +27,13 @@ def emprestar_livro(nome_livro, usuario):
                 livro['disponivel'] = False
                 livro['usuario'] = usuario
 
-                print('Livro emprestado com sucesso!')
+                return'Livro emprestado com sucesso!'
                 return
             else:
-                print('Livro já emprestado!')
+                return 'Livro já emprestado'
                 return
 
-    print('Livro não encontrado!')
+    return 'Livro não encontrado!'
 
 
 def devolver_livro(nome_livro):
@@ -47,23 +47,24 @@ def devolver_livro(nome_livro):
                 livro['disponivel'] = True
                 livro['usuario'] = None
 
-                print('Livro devolvido!')
+                return 'Livro devolvido!'
                 return
 
             else:
-                print('Esse livro já está disponível.')
-                return
+                return'Esse livro já está disponível.'
 
-    print('Livro não encontrado!')
+    return'Livro não encontrado!'
 
 
 def adicionar_livro(nome_livro):
-
+    if not nome_livro:
+        return 'Adicione um livro válido'
+        return
     for livro in livros:
 
         if livro['nome'].lower() == nome_livro.lower():
 
-            print('Livro já existe!')
+            return'Livro já existe!'
             return
 
     livros.append({
@@ -72,17 +73,15 @@ def adicionar_livro(nome_livro):
         'usuario': None
     })
 
-    print('Livro adicionado com sucesso!')
-
+    return 'Livro adicionado com sucesso!'
 
 def listar_livros():
 
+    lista_dos_livros = ''
+    
     for livro in livros:
-
         status = 'Disponível' if livro['disponivel'] else 'Emprestado'
+        lista_dos_livros += f"Livro: {livro['nome'] }\n Status: {status}\n Usuário: {livro['usuario']}\n\n "
 
-        print(f'''
-Nome: {livro['nome']}
-Status: {status}
-Usuário: {livro['usuario']}
-''')
+
+    return lista_dos_livros
