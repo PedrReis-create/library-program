@@ -11,7 +11,7 @@ def criar_login(janela, app_sistema):
     usuario_entry.pack()
 
     tk.Label(pagina_login, text='Senha').pack()
-    senha_entry = tk.Entry(pagina_login)
+    senha_entry = tk.Entry(pagina_login, show='*')
     senha_entry.pack()
 
     def login():
