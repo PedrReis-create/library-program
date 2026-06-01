@@ -10,7 +10,7 @@ Projeto de biblioteca feito em Python.
 
 ## Tecnologias
 - Python
-- Tkinter (Trabalhando nisso)
+- Tkinter
 
 ## Como executar
 
