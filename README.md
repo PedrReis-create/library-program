@@ -57,5 +57,5 @@ Durante o desenvolvimento deste projeto, foram praticados:
 - Sistema de perfis de usuário
 
 ## Autores
-[PedroSilva370]((https://github.com/PedroSilva370)) <br>
+[PedroSilva370](https://github.com/PedroSilva370) <br>
 [PedrReis-create](https://github.com/PedrReis-create)
