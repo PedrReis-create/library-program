@@ -1,9 +1,48 @@
+# =================
 # Python
+# =================
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
 
+
+# =================
 # Virtual environment
+# =================
 .venv/
+venv/
+env/
 
-# Local data
+
+# =================
+# Environment variables
+# =================
+.env
+
+
+# =================
+# VS Code
+# =================
+.vscode/
+tempCodeRunnerFile.py
+
+
+# =================
+# Database / local files
+# =================
+*.db
+*.sqlite3
 login_da_biblioteca.txt
+
+
+# =================
+# Logs
+# =================
+*.log
+
+
+# =================
+# OS
+# =================
+.DS_Store
+Thumbs.db
