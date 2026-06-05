@@ -1,32 +1,103 @@
 import tkinter as tk
-contas =[
-    ('pedro', '123')
-]
-def criar_login(janela, app_sistema):
-    pagina_login = tk.Frame(janela)
-    pagina_login.pack()
+from tkinter import ttk
 
-    tk.Label(pagina_login, text='Usuario').pack()
-    usuario_entry = tk.Entry(pagina_login)
-    usuario_entry.pack()
+# Inicializar
+janela = tk.Tk()
 
-    tk.Label(pagina_login, text='Senha').pack()
-    senha_entry = tk.Entry(pagina_login, show='*')
-    senha_entry.pack()
+# Título
+janela.title("Biblioteca")
 
-    def login():
-        usuario = usuario_entry.get()
-        senha = senha_entry.get()
-        if(usuario, senha) in contas :
-            pagina_login.pack_forget()
-            app_sistema.pack()
-            mensagem_label['text'] = ''
-        else:
-            mensagem_label['text'] = 'Usuario ou senha errado'
-        
-        
-    tk.Button(pagina_login, text='Login', command=login).pack()
+# Ícone
+try:
+    janela.iconbitmap("book.ico")
+except:
+    pass
 
-    mensagem_label = tk.Label(pagina_login)
-    mensagem_label.pack()
+# Dimensões
+janela.geometry("300x300")
+janela.resizable(False, False)
 
+def abrir_biblioteca():
+    janela.destroy()  # fecha a tela de login
+    import Interface  # abre a tela principal
+
+# Função de cadastro
+def cadastrar():
+    nome = entrada_nome.get().capitalize()
+    senha = entrada_senha.get()
+
+    if nome == "" or senha == "":
+        resultado.config(text="Preencha todos os campos!")
+        return
+
+    if len(senha) < 4:
+        resultado.config(text="Crie um senha com mais de 4 digitos!")
+        return
+    elif len(senha) > 20:
+        resultado.config(text="Crie um senha com menos de 20 digitos!")
+        return
+
+    # Verifica se o usuário já existe
+    try:
+        with open("login_da_biblioteca.txt", "r", encoding="utf-8") as arquivo:
+            for linha in arquivo:
+                usuario, _ = linha.strip().split(";")
+
+                if usuario == nome:
+                    resultado.config(text="Usuário já cadastrado!")
+                    return
+
+    except FileNotFoundError:
+        pass
+
+    # Salva o novo usuário
+    with open("login_da_biblioteca.txt", "a", encoding="utf-8") as arquivo:
+        arquivo.write(f"{nome};{senha}\n")
+
+    resultado.config(text="Cadastro realizado!")
+    abrir_biblioteca()
+
+# Função para entrar ao inves de fazer o login
+def entrar():
+    nome = entrada_nome.get()
+    senha = entrada_senha.get()
+
+    if nome == "" or senha == "":
+        resultado.config(text="Preencha todos os campos!")
+        return
+
+    try:
+        with open("login_da_biblioteca.txt", "r", encoding="utf-8") as arquivo:
+            for linha in arquivo:
+                usuario, senha_salva = linha.strip().split(";")
+
+                if usuario == nome and senha_salva == senha:
+                    resultado.config(text=f"Bem-vindo, {nome}!")
+                    abrir_biblioteca()
+                    return
+
+        resultado.config(text="Nome ou senha incorretos!")
+
+    except FileNotFoundError:
+        resultado.config(text="Nenhum usuário cadastrado!")
+
+
+# Nome
+ttk.Label(janela, text="Nome").pack(pady=5)
+entrada_nome = ttk.Entry(janela)
+entrada_nome.pack()
+
+# Senha
+ttk.Label(janela, text="Senha").pack(pady=5)
+entrada_senha = ttk.Entry(janela, show="*")
+entrada_senha.pack()
+
+# Botões
+ttk.Button(janela, text="Entrar", command=entrar).pack(pady=5)
+ttk.Button(janela, text="Cadastrar", command=cadastrar).pack(pady=5)
+
+# Mensagem
+resultado = ttk.Label(janela, text="")
+resultado.pack(pady=10)
+
+janela.mainloop()
