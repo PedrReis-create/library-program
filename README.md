@@ -1,61 +1,68 @@
-# Sistema de Gerenciamento de Biblioteca
+````md
+#  Sistema de Gerenciamento de Biblioteca
 
-Um sistema simples de gerenciamento de biblioteca desenvolvido em Python com interface gráfica utilizando Tkinter.
+![Python](https://img.shields.io/badge/Python-3-blue)
+![Tkinter](https://img.shields.io/badge/Interface-Tkinter-green)
 
-Este projeto foi criado como forma de praticar programação em Python, criação de interfaces gráficas, manipulação de arquivos e organização de código.
+Sistema simples de gerenciamento de biblioteca desenvolvido em **Python** utilizando **Tkinter**.
 
-## Funcionalidades
+Projeto criado para praticar interfaces gráficas, manipulação de arquivos e organização de código.
 
-- Cadastro de usuários
-- Sistema de login
-- Busca de livros por nome
-- Verificação de disponibilidade
-- Empréstimo de livros
-- Devolução de livros
-- Adição de novos livros
-- Listagem de livros cadastrados
+##  Preview
 
-## Tecnologias Utilizadas
+<img src="imagens/interface.png" width="600">
+
+##  Funcionalidades
+
+-  Cadastro e login de usuários
+-  Busca e listagem de livros
+-  Empréstimo e devolução
+-  Cadastro de novos livros
+-  Verificação de disponibilidade
+
+##  Tecnologias
 
 - Python 3
 - Tkinter
-- Manipulação de arquivos (.txt)
+- Arquivos `.txt`
 - Listas e dicionários
 
-## Estrutura do Projeto
+##  Estrutura
 
 ```text
-login.py          # Tela de login e cadastro
-Interface.py      # Interface gráfica principal
-biblioteca.py     # Funções de gerenciamento da biblioteca
-```
+login.py          # Login e cadastro
+Interface.py      # Interface principal
+biblioteca.py     # Gerenciamento da biblioteca
+````
 
-## Como Executar
+##  Execução
 
 ```bash
 python login.py
 ```
 
-## Aprendizados
+##  Aprendizados
 
-Durante o desenvolvimento deste projeto, foram praticados:
+* Funções e modularização
+* Manipulação de arquivos
+* Autenticação simples
+* Interfaces com Tkinter
 
-- Funções
-- Programação modular
-- Listas e dicionários
-- Leitura e escrita de arquivos
-- Sistema de autenticação simples
-- Desenvolvimento de interfaces gráficas com Tkinter
+##  Melhorias Futuras
 
-## Melhorias Futuras
+* Banco de dados (MySQL)
+* Criptografia de senhas
+* Histórico de empréstimos
+* Sistema de usuários
 
-- Integração com banco de dados
-- Criptografia de senhas
-- Categorias de livros
-- Histórico de empréstimos
-- Interface gráfica mais completa
-- Sistema de perfis de usuário
+##  Autores
 
-## Autores
-[PedroSilva370](https://github.com/PedroSilva370) <br>
+[PedroSilva370](https://github.com/PedroSilva370)
 [PedrReis-create](https://github.com/PedrReis-create)
+
+ Projeto desenvolvido para prática em Python.
+
+```
+```
+
+
