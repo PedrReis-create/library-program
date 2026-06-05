@@ -105,10 +105,9 @@ Execute o arquivo principal:
 
 ## 📈 Estatísticas do Desenvolvedor
 
-<img 
-src="https://github-readme-stats.vercel.app/api?username=PedrReis-create&show_icons=true&theme=dark" 
-width="450">
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=PedrReis-create&show_icons=true&theme=dark)
 
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=PedrReis-create&layout=compact&theme=dark)
 ---
 
 ⭐ Projeto desenvolvido para evolução e prática em Python.
