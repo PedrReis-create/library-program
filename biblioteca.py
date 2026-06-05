@@ -2,7 +2,7 @@
 
 livros = [
     {
-        'nome': 'Harry Potter',
+        'nome': 'Harry potter',
         'disponivel': True,
         'usuario': None
     },
@@ -13,27 +13,39 @@ livros = [
     }
 ]
 
+def buscar_livro(nome):
+    if len(livros) == 0:
+        return 'Nenhum livro encontrado.'
+
+    for k, livro in enumerate(livros):
+        if livro['nome'].lower() == nome.lower():
+            return (
+                f"ID: {k}\n"
+                f"Nome: {livro['nome']}\n"
+                f"Disponível: {'Sim' if livro['disponivel'] else 'Não'}"
+            )
+
+    return ('Nenhum livro encontrado.')
 
 def emprestar_livro(nome_livro, usuario):
-    if not usuario:
-                return 'Digite seu nome primeiro'
-                return
+
     for livro in livros:
 
         if livro['nome'].lower() == nome_livro.lower():
-            
+
             if livro['disponivel']:
 
                 livro['disponivel'] = False
                 livro['usuario'] = usuario
 
-                return'Livro emprestado com sucesso!'
-                return
-            else:
-                return 'Livro já emprestado'
+                print('Livro emprestado com sucesso!')
                 return
 
-    return 'Livro não encontrado!'
+            else:
+                print('Livro já emprestado!')
+                return
+
+    print('Livro não encontrado!')
 
 
 def devolver_livro(nome_livro):
@@ -47,24 +59,23 @@ def devolver_livro(nome_livro):
                 livro['disponivel'] = True
                 livro['usuario'] = None
 
-                return 'Livro devolvido!'
+                print('Livro devolvido!')
                 return
 
             else:
-                return'Esse livro já está disponível.'
+                print('Esse livro já está disponível.')
+                return
 
-    return'Livro não encontrado!'
+    print('Livro não encontrado!')
 
 
 def adicionar_livro(nome_livro):
-    if not nome_livro:
-        return 'Adicione um livro válido'
-        return
+
     for livro in livros:
 
         if livro['nome'].lower() == nome_livro.lower():
 
-            return'Livro já existe!'
+            print('Livro já existe!')
             return
 
     livros.append({
@@ -73,15 +84,17 @@ def adicionar_livro(nome_livro):
         'usuario': None
     })
 
-    return 'Livro adicionado com sucesso!'
+    print('Livro adicionado com sucesso!')
+
 
 def listar_livros():
 
-    lista_dos_livros = ''
-    
     for livro in livros:
+
         status = 'Disponível' if livro['disponivel'] else 'Emprestado'
-        lista_dos_livros += f"Livro: {livro['nome'] }\n Status: {status}\n Usuário: {livro['usuario']}\n\n "
 
-
-    return lista_dos_livros
+        print(f'''
+Nome: {livro['nome']}
+Status: {status}
+Usuário: {livro['usuario']}
+''')
