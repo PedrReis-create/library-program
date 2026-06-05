@@ -1,4 +1,4 @@
-```md
+
 # 📚 Sistema de Gerenciamento de Biblioteca
 
 ![Python](https://img.shields.io/badge/Python-3-blue)
@@ -112,6 +112,6 @@ width="450">
 ---
 
 ⭐ Projeto desenvolvido para evolução e prática em Python.
-```
+
 
 
