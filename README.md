@@ -2,67 +2,113 @@
 #  Sistema de Gerenciamento de Biblioteca
 
 ![Python](https://img.shields.io/badge/Python-3-blue)
-![Tkinter](https://img.shields.io/badge/Interface-Tkinter-green)
+![Tkinter](https://img.shields.io/badge/Tkinter-GUI-green)
+![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
 
-Sistema simples de gerenciamento de biblioteca desenvolvido em **Python** utilizando **Tkinter**.
+<img src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png" width="120">
 
-Projeto criado para praticar interfaces gráficas, manipulação de arquivos e organização de código.
+Sistema de gerenciamento de biblioteca desenvolvido em **Python** com interface gráfica utilizando **Tkinter**.
 
-##  Preview
+Criado para praticar desenvolvimento de interfaces, organização de código e manipulação de dados.
 
-<img src="imagens/interface.png" width="600">
+---
 
 ##  Funcionalidades
 
 -  Cadastro e login de usuários
--  Busca e listagem de livros
--  Empréstimo e devolução
+-  Busca de livros
+-  Empréstimos e devoluções
 -  Cadastro de novos livros
--  Verificação de disponibilidade
+-  Controle de disponibilidade
+
+---
 
 ##  Tecnologias
 
 - Python 3
 - Tkinter
-- Arquivos `.txt`
+- Manipulação de arquivos `.txt`
 - Listas e dicionários
+
+---
+
+##  Estatísticas do Projeto
+
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/PedrReis-create/library-program)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/PedrReis-create/library-program)
+
+![GitHub repo size](https://img.shields.io/github/repo-size/PedrReis-create/library-program)
+
+---
 
 ##  Estrutura
 
 ```text
 login.py          # Login e cadastro
-Interface.py      # Interface principal
-biblioteca.py     # Gerenciamento da biblioteca
-````
+Interface.py      # Interface gráfica
+biblioteca.py     # Lógica da biblioteca
+```
 
-##  Execução
+---
+
+##  Executar
 
 ```bash
 python login.py
 ```
 
+---
+
 ##  Aprendizados
 
-* Funções e modularização
-* Manipulação de arquivos
-* Autenticação simples
-* Interfaces com Tkinter
+- Programação modular
+- Interfaces com Tkinter
+- Manipulação de arquivos
+- Sistemas de autenticação
 
-##  Melhorias Futuras
+---
 
-* Banco de dados (MySQL)
-* Criptografia de senhas
-* Histórico de empréstimos
-* Sistema de usuários
+##  Próximas Melhorias
 
-##  Autores
+- Banco de dados MySQL
+- Criptografia de senhas
+- Histórico de empréstimos
+- Sistema de permissões
 
-[PedroSilva370](https://github.com/PedroSilva370)
-[PedrReis-create](https://github.com/PedrReis-create)
+---
 
- Projeto desenvolvido para prática em Python.
+##  Equipe de Desenvolvimento
 
-```
-```
+<table>
+<tr>
+
+<td align="center">
+<a href="https://github.com/PedrReis-create">
+<img src="https://github.com/PedrReis-create.png" width="100"><br>
+PedrReis-create
+</a>
+</td>
+
+<td align="center">
+<a href="https://github.com/PedroSilva370">
+<img src="https://github.com/PedroSilva370.png" width="100"><br>
+PedroSilva370
+</a>
+</td>
+
+</tr>
+</table>
+
+---
+
+##  Estatísticas do Desenvolvedor
+
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=PedrReis-create&show_icons=true&theme=dark)
+
+---
+
+ Projeto desenvolvido para evolução em Python.
+````
 
 
