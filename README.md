@@ -1,5 +1,5 @@
-````md
-#  Sistema de Gerenciamento de Biblioteca
+```md
+# 📚 Sistema de Gerenciamento de Biblioteca
 
 ![Python](https://img.shields.io/badge/Python-3-blue)
 ![Tkinter](https://img.shields.io/badge/Tkinter-GUI-green)
@@ -13,7 +13,7 @@ Criado para praticar desenvolvimento de interfaces, organização de código e m
 
 ---
 
-##  Funcionalidades
+## ⚙️ Funcionalidades
 
 -  Cadastro e login de usuários
 -  Busca de livros
@@ -25,47 +25,47 @@ Criado para praticar desenvolvimento de interfaces, organização de código e m
 
 ##  Tecnologias
 
-- Python 3
-- Tkinter
-- Manipulação de arquivos `.txt`
-- Listas e dicionários
+-  Python 3
+-  Tkinter
+-  Arquivos `.txt`
+-  Listas e dicionários
 
 ---
 
-##  Estatísticas do Projeto
+## 📊 Estatísticas do Projeto
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/PedrReis-create/library-program)
+![Commits](https://img.shields.io/github/commit-activity/m/PedrReis-create/library-program)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/PedrReis-create/library-program)
+![Último Commit](https://img.shields.io/github/last-commit/PedrReis-create/library-program)
 
-![GitHub repo size](https://img.shields.io/github/repo-size/PedrReis-create/library-program)
-
----
-
-##  Estrutura
-
-```text
-login.py          # Login e cadastro
-Interface.py      # Interface gráfica
-biblioteca.py     # Lógica da biblioteca
-```
+![Tamanho](https://img.shields.io/github/repo-size/PedrReis-create/library-program)
 
 ---
 
-##  Executar
+## 📂 Estrutura
 
-```bash
-python login.py
-```
+📁 library-program
+
+├── login.py → Login e cadastro  
+├── Interface.py → Interface gráfica  
+└── biblioteca.py → Lógica da biblioteca  
+
+---
+
+## ▶️ Executar
+
+Execute o arquivo principal:
+
+`python login.py`
 
 ---
 
 ##  Aprendizados
 
 - Programação modular
-- Interfaces com Tkinter
+- Interfaces gráficas com Tkinter
 - Manipulação de arquivos
-- Sistemas de autenticação
+- Sistema de autenticação simples
 
 ---
 
@@ -78,7 +78,7 @@ python login.py
 
 ---
 
-##  Equipe de Desenvolvimento
+## 👥 Equipe de Desenvolvimento
 
 <table>
 <tr>
@@ -86,14 +86,15 @@ python login.py
 <td align="center">
 <a href="https://github.com/PedrReis-create">
 <img src="https://github.com/PedrReis-create.png" width="100"><br>
-PedrReis-create
+<b>PedrReis-create</b>
 </a>
 </td>
+
 
 <td align="center">
 <a href="https://github.com/PedroSilva370">
 <img src="https://github.com/PedroSilva370.png" width="100"><br>
-PedroSilva370
+<b>PedroSilva370</b>
 </a>
 </td>
 
@@ -102,13 +103,15 @@ PedroSilva370
 
 ---
 
-##  Estatísticas do Desenvolvedor
+## 📈 Estatísticas do Desenvolvedor
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=PedrReis-create&show_icons=true&theme=dark)
+<img 
+src="https://github-readme-stats.vercel.app/api?username=PedrReis-create&show_icons=true&theme=dark" 
+width="450">
 
 ---
 
- Projeto desenvolvido para evolução em Python.
-````
+⭐ Projeto desenvolvido para evolução e prática em Python.
+```
 
 
