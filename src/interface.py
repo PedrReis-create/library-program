@@ -29,6 +29,9 @@ myApp.configure(background='white')
 
 
 # Funções
+def mostrar_resultado(texto):
+    resultado_label.config(text=texto)
+
 def procurar_livro():
     nome = entrada_livro.get().strip()
 
@@ -36,7 +39,7 @@ def procurar_livro():
         nome
     )
 
-    resultado_label.config(text=resultado)
+    mostrar_resultado(resultado)
 
 def emprestar():
     nome = entrada_livro.get().strip()
@@ -46,7 +49,7 @@ def emprestar():
         usuario_atual
     )
 
-    resultado_label.config(text=resultado)
+    mostrar_resultado(resultado)
 
 def devolver():
     nome = entrada_livro.get().strip()
@@ -54,7 +57,7 @@ def devolver():
         nome
     )
 
-    resultado_label.config(text=resultado)
+    mostrar_resultado(resultado)
 
 def adicionar():
     nome = entrada_livro.get().strip()
@@ -62,11 +65,11 @@ def adicionar():
         nome
     )
     
-    resultado_label.config(text=resultado)
+    mostrar_resultado(resultado)
 
 def listar():
     resultado = listar_livros()
-    resultado_label.config(text=resultado)
+    mostrar_resultado(resultado)
 # Texto
 showinfo = ttk.Label(
     myApp,
