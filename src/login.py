@@ -14,7 +14,16 @@ except:
     pass
 
 # Dimensões
-janela.geometry("300x300")
+width = 300
+height = 300
+
+width_tela = janela.winfo_screenwidth()
+height_tela = janela.winfo_screenheight()
+
+pos_x = (width_tela // 2) - (width // 2)
+pos_y = (height_tela // 2) - (height // 2)
+
+janela.geometry(f'{width}x{height}+{pos_x}+{pos_y}')
 janela.resizable(False, False)
 
 
