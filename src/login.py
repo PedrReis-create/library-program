@@ -32,7 +32,7 @@ def abrir_biblioteca(usuario):
 
     import interface
     interface.usuario_atual = usuario
-    interface.abrir()
+    interface.abrir(usuario)
 
 
 # Função de cadastro
