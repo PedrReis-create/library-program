@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from database import cadastrar_usuarios, verificar_usuario
 
 # Inicializar
 janela = tk.Tk()
@@ -37,65 +38,40 @@ def abrir_biblioteca(usuario):
 
 # Função de cadastro
 def cadastrar():
-    nome = entrada_nome.get().capitalize()
-    senha = entrada_senha.get()
-
-    if nome == "" or senha == "":
-        resultado.config(text="Preencha todos os campos!")
+    nome = entrada_nome.get().strip().capitalize()
+    senha = entrada_senha.get().strip()
+    
+    if not nome or not senha :
+        resultado.config(text='Preencha todos os campos! ')
+        return
+    if len(senha) < 4 :
+        resultado.config(text='Crie uma senha com mais de 4 dígitos! ')
+        return
+    elif len(senha) > 20 :
+        resultado.config(text='Crie uma senha com menos de 20 dígitos! ')
         return
 
-    if len(senha) < 4:
-        resultado.config(text="Crie um senha com mais de 4 digitos!")
-        return
-
-    elif len(senha) > 20:
-        resultado.config(text="Crie um senha com menos de 20 digitos!")
-        return
-
-    # Verifica se o usuário já existe
-    try:
-        with open("login_da_biblioteca.txt", "r", encoding="utf-8") as arquivo:
-            for linha in arquivo:
-                usuario, _ = linha.strip().split(";")
-
-                if usuario == nome:
-                    resultado.config(text="Usuário já cadastrado!")
-                    return
-
-    except FileNotFoundError:
-        pass
-
-    # Salva o novo usuário
-    with open("login_da_biblioteca.txt", "a", encoding="utf-8") as arquivo:
-        arquivo.write(f"{nome};{senha}\n")
-
-    resultado.config(text="Cadastro realizado!")
-    abrir_biblioteca(nome)
-
+    if cadastrar_usuarios(nome, senha):
+        resultado.config(text='Cadastro realizado com sucesso! ')
+        abrir_biblioteca(nome)
+    else:
+        resultado.config(text='Usuário já existe! ')
 
 # Função para entrar ao inves de fazer o login
 def entrar():
-    nome = entrada_nome.get()
-    senha = entrada_senha.get()
+    
+    nome = entrada_nome.get().strip().capitalize()
+    senha = entrada_senha.get().strip()
 
-    if nome == "" or senha == "":
+    if not nome or not senha:
         resultado.config(text="Preencha todos os campos!")
         return
 
-    try:
-        with open("login_da_biblioteca.txt", "r", encoding="utf-8") as arquivo:
-            for linha in arquivo:
-                usuario, senha_salva = linha.strip().split(";")
-
-                if usuario == nome and senha_salva == senha:
-                    resultado.config(text=f"Bem-vindo, {nome}!")
-                    abrir_biblioteca(nome)
-                    return
-
+    if verificar_usuario(nome, senha):
+        resultado.config(text=f"Bem-vindo, {nome}!")
+        abrir_biblioteca(nome)
+    else:
         resultado.config(text="Nome ou senha incorretos!")
-
-    except FileNotFoundError:
-        resultado.config(text="Nenhum usuário cadastrado!")
 
 
 # Nome
