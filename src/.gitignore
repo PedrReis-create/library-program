@@ -46,3 +46,8 @@ login_da_biblioteca.txt
 # =================
 .DS_Store
 Thumbs.db
+
+__pycache__/
+*.pyc
+.vscode/
+login_da_biblioteca.txt
