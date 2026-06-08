@@ -3,6 +3,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3-blue)
 ![Tkinter](https://img.shields.io/badge/Tkinter-GUI-green)
+![MySQL](https://img.shields.io/badge/MySQL-Working_on-blue)
 ![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
 
 <img src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png" width="120">
@@ -27,7 +28,7 @@ Criado para praticar desenvolvimento de interfaces, organização de código e m
 
 -  Python 3
 -  Tkinter
--  Arquivos `.txt`
+-  Banco de dados MySQL (trabalhando nisso)
 -  Listas e dicionários
 
 ---
@@ -71,7 +72,6 @@ Execute o arquivo principal:
 
 ##  Próximas Melhorias
 
-- Banco de dados MySQL
 - Criptografia de senhas
 - Histórico de empréstimos
 - Sistema de permissões
