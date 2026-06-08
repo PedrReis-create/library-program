@@ -128,10 +128,38 @@ def emprestar_livro(nome):
 # Marca um livro como disponível novamente
 def devolver_livro(nome):
     cursor = conexao.cursor()
-    
+
+    cursor.execute(
+        'SELECT disponivel FROM livros WHERE nome = %s',
+        (nome,)
+    )
+
+    resultado = cursor.fetchone()
+
+    # Livro não existe
+    if resultado is None:
+        return False
+
+    # Livro já está disponível
+    elif resultado[0] == True:
+        return False
+
     cursor.execute(
         'UPDATE livros SET disponivel = TRUE WHERE nome = %s',
         (nome,)
     )
-    
+
     conexao.commit()
+
+    return True
+
+def listar_livro():
+    cursor = conexao.cursor()
+
+    cursor.execute(
+        'SELECT * FROM livros'
+    )
+
+    resultado = cursor.fetchall()
+
+    return resultado
