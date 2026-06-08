@@ -1,6 +1,12 @@
 from tkinter import *
 from tkinter import ttk
-from biblioteca import *
+from database import (
+    adicionar_livro,
+    buscar_livro,
+    emprestar_livro,
+    devolver_livro,
+    listar_livro
+)  # COMEÇANDO A CONECTAR FUNCOES AO DATABASE
 
 
 # Inicializar
@@ -47,10 +53,7 @@ def abrir(usuario):
         if usuario is None:
             mostrar_resultado('Faça login primeiro')
             return
-        resultado = emprestar_livro(
-            nome,
-            usuario
-        )
+        resultado = emprestar_livro(nome)
 
         mostrar_resultado(resultado)
 
@@ -64,14 +67,16 @@ def abrir(usuario):
 
     def adicionar():
         nome = entrada_livro.get().strip()
+        autor = entrada_livro.get().strip()
         resultado = adicionar_livro(
-            nome
+            nome,
+            autor
         )
         
         mostrar_resultado(resultado)
 
     def listar():
-        resultado = listar_livros()
+        resultado = listar_livro()
         mostrar_resultado(resultado)
     # Texto
     showinfo = ttk.Label(
@@ -84,6 +89,10 @@ def abrir(usuario):
     # Entrada
     entrada_livro = ttk.Entry(myApp)
     entrada_livro.place(x=70, y=70, width=160, height=25)
+    
+    # Para a função adicionar livro
+    entrada_autor = ttk.Entry(myApp)
+    entrada_livro.place()
 
     # Botão 1 Procurar Livro
     botao1 = ttk.Button(
