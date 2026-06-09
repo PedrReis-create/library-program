@@ -67,7 +67,7 @@ def abrir(usuario):
 
     def adicionar():
         nome = entrada_livro.get().strip()
-        autor = entrada_livro.get().strip()
+        autor = entrada_autor.get().strip()
         resultado = adicionar_livro(
             nome,
             autor
@@ -84,15 +84,22 @@ def abrir(usuario):
         text='Nome do livro:',
         background='white'
     )
-    showinfo.place(x=100, y=40)
+    showinfo.place(x=100, y=20)
 
     # Entrada
     entrada_livro = ttk.Entry(myApp)
-    entrada_livro.place(x=70, y=70, width=160, height=25)
+    entrada_livro.place(x=70, y=45, width=160, height=25)
     
+    # Texto entrada autor
+    showauthor = ttk.Label(
+        myApp,
+        text='Nome do autor:',
+        background='white'
+    )
+    showauthor.place(x=100, y=80)
     # Para a função adicionar livro
     entrada_autor = ttk.Entry(myApp)
-    entrada_livro.place()
+    entrada_autor.place(x=70, y=105, width=160, height=25)
 
     # Botão 1 Procurar Livro
     botao1 = ttk.Button(
@@ -100,7 +107,7 @@ def abrir(usuario):
         text='Procurar',
         command=procurar_livro
     )
-    botao1.place(x=45, y=120, width=70)
+    botao1.place(x=45, y=150, width=70)
 
     # Botão 2 Emprestar Livro
     botao2 = ttk.Button(
@@ -108,7 +115,7 @@ def abrir(usuario):
         text ='Emprestar',
         command=emprestar
     )
-    botao2.place(x=115, y=120, width=70,)
+    botao2.place(x=115, y=150, width=70,)
 
     # Botão 3 Devolver Livro
     botao3 = ttk.Button(
@@ -116,7 +123,7 @@ def abrir(usuario):
         text='Devolver',
         command=devolver  
     )
-    botao3.place(x=185, y=120, width=70)
+    botao3.place(x=185, y=150, width=70)
 
     # Botão 4 Adicionar Livro
     botao4 = ttk.Button(
@@ -124,7 +131,7 @@ def abrir(usuario):
         text='Adicionar',
         command=adicionar
     )
-    botao4.place(x=80, y=145, width=70)
+    botao4.place(x=80, y=180, width=70)
 
     # Botão 5 Listar Livros
     botao5 = ttk.Button(
@@ -132,7 +139,7 @@ def abrir(usuario):
         text='Listar',
         command=listar   
     )
-    botao5.place(x=150, y=145, width=70)
+    botao5.place(x=150, y=180, width=70)
 
     # Resultado
     resultado_label = Label(
@@ -143,7 +150,7 @@ def abrir(usuario):
         font=('Arial', 10)
     )
 
-    resultado_label.place(x=50, y=180, width=200)
+    resultado_label.place(x=50, y=220, width=200)
 
     # Loop
     myApp.mainloop()
