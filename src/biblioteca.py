@@ -6,11 +6,6 @@ livros = [
         'disponivel': True,
         'usuario': None
     },
-    {
-        'nome': '1984',
-        'disponivel': True,
-        'usuario': None
-    }
 ]
 
 def buscar_livro(nome_livro):
