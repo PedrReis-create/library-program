@@ -6,21 +6,18 @@ from database import (
     emprestar_livro,
     devolver_livro,
     listar_livro
-)  # COMEÇANDO A CONECTAR FUNCOES AO DATABASE
+)
 
 
-# Inicializar
 def abrir(usuario):
-    myApp = Tk()
-    # Título
-    myApp.title("Biblioteca")
 
-    # Ícone
+    myApp = Tk()
+
+    myApp.title("Biblioteca")
     myApp.iconbitmap("book.ico")
 
-    # Dimensões
-    largura = 300
-    altura = 300
+    largura = 600
+    altura = 400
 
     largura_tela = myApp.winfo_screenwidth()
     altura_tela = myApp.winfo_screenheight()
@@ -29,131 +26,276 @@ def abrir(usuario):
     y = (altura_tela - altura) // 2
 
     myApp.geometry(f"{largura}x{altura}+{x}+{y}")
-
-    # Cor
     myApp.configure(background='white')
 
 
+    # =================
     # Funções
+    # =================
 
     def mostrar_resultado(texto):
         resultado_label.config(text=texto)
 
+
     def procurar_livro():
+
         nome = entrada_livro.get().strip()
 
         livro = buscar_livro(nome)
-        
+
         if livro:
             mostrar_resultado(
                 f'Nome: {livro[1]}\nAutor: {livro[2]}'
             )
-        else :
+        else:
             mostrar_resultado('Livro não encontrado!')
 
+
     def emprestar():
+
         nome = entrada_livro.get().strip()
+
         if usuario is None:
             mostrar_resultado('Faça login primeiro!')
             return
-        elif emprestar_livro(nome):
+
+        elif emprestar_livro(nome, usuario):
             mostrar_resultado('Livro emprestado!')
+            listar()
+
         else:
             mostrar_resultado('Não foi possível emprestar!')
-    
+
+
     def devolver():
+
         nome = entrada_livro.get().strip()
-        
+
         if devolver_livro(nome):
             mostrar_resultado('Livro devolvido!')
+            listar()
+
         else:
             mostrar_resultado('Não foi possível devolver!')
 
+
     def adicionar():
+
         nome = entrada_livro.get().strip()
         autor = entrada_autor.get().strip()
-        
+
         if adicionar_livro(nome, autor):
             mostrar_resultado('Livro adicionado!')
+            listar()
+
         else:
             mostrar_resultado('Livro já existente')
 
+
     def listar():
-        resultado = listar_livro()
-        mostrar_resultado(resultado)
-    # Texto
+
+        for item in tabela.get_children():
+            tabela.delete(item)
+
+        livros = listar_livro()
+
+        for livro in livros:
+
+            tabela.insert(
+                '',
+                END,
+                values=(
+                    livro[1],
+                    livro[2],
+                    'Disponível' if livro[3] else 'Emprestado',
+                    livro[4]
+                )
+            )
+
+
+    # =================
+    # Interface
+    # =================
+
+
     showinfo = ttk.Label(
         myApp,
         text='Nome do livro:',
         background='white'
     )
-    showinfo.place(x=100, y=20)
 
-    # Entrada
+    showinfo.place(
+        x=80,
+        y=30
+    )
+
+
     entrada_livro = ttk.Entry(myApp)
-    entrada_livro.place(x=70, y=45, width=160, height=25)
-    
-    # Texto entrada autor
+
+    entrada_livro.place(
+        x=180,
+        y=28,
+        width=250,
+        height=25
+    )
+
+
     showauthor = ttk.Label(
         myApp,
         text='Nome do autor:',
         background='white'
     )
-    showauthor.place(x=100, y=80)
-    # Para a função adicionar livro
-    entrada_autor = ttk.Entry(myApp)
-    entrada_autor.place(x=70, y=105, width=160, height=25)
 
-    # Botão 1 Procurar Livro
+    showauthor.place(
+        x=80,
+        y=70
+    )
+
+
+    entrada_autor = ttk.Entry(myApp)
+
+    entrada_autor.place(
+        x=180,
+        y=68,
+        width=250,
+        height=25
+    )
+
+
     botao1 = ttk.Button(
         myApp,
         text='Procurar',
         command=procurar_livro
     )
-    botao1.place(x=45, y=150, width=70)
 
-    # Botão 2 Emprestar Livro
+    botao1.place(
+        x=60,
+        y=120,
+        width=90
+    )
+
+
     botao2 = ttk.Button(
         myApp,
-        text ='Emprestar',
+        text='Emprestar',
         command=emprestar
     )
-    botao2.place(x=115, y=150, width=70,)
 
-    # Botão 3 Devolver Livro
+    botao2.place(
+        x=160,
+        y=120,
+        width=90
+    )
+
+
     botao3 = ttk.Button(
         myApp,
         text='Devolver',
-        command=devolver  
+        command=devolver
     )
-    botao3.place(x=185, y=150, width=70)
 
-    # Botão 4 Adicionar Livro
+    botao3.place(
+        x=260,
+        y=120,
+        width=90
+    )
+
+
     botao4 = ttk.Button(
         myApp,
         text='Adicionar',
         command=adicionar
     )
-    botao4.place(x=80, y=180, width=70)
 
-    # Botão 5 Listar Livros
+    botao4.place(
+        x=360,
+        y=120,
+        width=90
+    )
+
+
     botao5 = ttk.Button(
         myApp,
         text='Listar',
-        command=listar   
+        command=listar
     )
-    botao5.place(x=150, y=180, width=70)
 
-    # Resultado
+    botao5.place(
+        x=460,
+        y=120,
+        width=80
+    )
+
+
     resultado_label = Label(
         myApp,
         text='',
         bg='white',
-        justify='center',
         font=('Arial', 10)
     )
 
-    resultado_label.place(x=50, y=220, width=200)
+    resultado_label.place(
+        x=150,
+        y=160,
+        width=300
+    )
 
-    # Loop
+
+    tabela = ttk.Treeview(
+        myApp,
+        columns=('Nome', 'Autor', 'Status', 'Usuario'),
+        show='headings'
+    )
+
+
+    tabela.heading(
+        'Nome',
+        text='Nome'
+    )
+
+    tabela.heading(
+        'Autor',
+        text='Autor'
+    )
+
+    tabela.heading(
+        'Status',
+        text='Status'
+    )
+
+    tabela.heading(
+        'Usuario',
+        text='Usuário'
+    )
+
+
+    tabela.column(
+        'Nome',
+        width=170
+    )
+
+    tabela.column(
+        'Autor',
+        width=170
+    )
+
+    tabela.column(
+        'Status',
+        width=100
+    )
+
+    tabela.column(
+        'Usuario',
+        width=100
+    )
+
+
+    tabela.place(
+        x=40,
+        y=200,
+        width=520,
+        height=150
+    )
+
+
     myApp.mainloop()
