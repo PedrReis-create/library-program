@@ -59,7 +59,7 @@ def adicionar_livro(nome, autor):
     
     # Verifica se o livro já existe
     cursor.execute(
-        'SELECT * FROM livros WHERE nome = %s',
+        'SELECT * FROM livros WHERE nome = %s, %s',
         (nome,)
     )
 
@@ -153,9 +153,11 @@ def devolver_livro(nome):
 
     return True
 
+#Lista os livros existentes
 def listar_livro():
     cursor = conexao.cursor()
-
+    
+    #Selectiona tudo da coluna livros
     cursor.execute(
         'SELECT * FROM livros'
     )
