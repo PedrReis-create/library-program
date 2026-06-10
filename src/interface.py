@@ -42,38 +42,41 @@ def abrir(usuario):
     def procurar_livro():
         nome = entrada_livro.get().strip()
 
-        resultado = buscar_livro(
-            nome
-        )
-
-        mostrar_resultado(resultado)
+        livro = buscar_livro(nome)
+        
+        if livro:
+            mostrar_resultado(
+                f'Nome: {livro[1]}\nAutor: {livro[2]}'
+            )
+        else :
+            mostrar_resultado('Livro não encontrado!')
 
     def emprestar():
         nome = entrada_livro.get().strip()
         if usuario is None:
-            mostrar_resultado('Faça login primeiro')
+            mostrar_resultado('Faça login primeiro!')
             return
-        resultado = emprestar_livro(nome)
-
-        mostrar_resultado(resultado)
-
+        elif emprestar_livro(nome):
+            mostrar_resultado('Livro emprestado!')
+        else:
+            mostrar_resultado('Não foi possível emprestar!')
+    
     def devolver():
         nome = entrada_livro.get().strip()
-        resultado = devolver_livro(
-            nome
-        )
-
-        mostrar_resultado(resultado)
+        
+        if devolver_livro(nome):
+            mostrar_resultado('Livro devolvido!')
+        else:
+            mostrar_resultado('Não foi possível devolver!')
 
     def adicionar():
         nome = entrada_livro.get().strip()
         autor = entrada_autor.get().strip()
-        resultado = adicionar_livro(
-            nome,
-            autor
-        )
         
-        mostrar_resultado(resultado)
+        if adicionar_livro(nome, autor):
+            mostrar_resultado('Livro adicionado!')
+        else:
+            mostrar_resultado('Livro já existente')
 
     def listar():
         resultado = listar_livro()
