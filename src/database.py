@@ -1,12 +1,16 @@
 import mysql.connector
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Conexão com o banco de dados MySQL
 conexao = mysql.connector.connect(
-    host = 'localhost',
-    user = 'root',
-    password = 'pedro123',
-    database = 'biblioteca',
-    port = 3307
+    host='localhost',
+    user='root',
+    password=os.getenv('MYSQL_PASSWORD'),
+    database='biblioteca',
+    port=3307
 )
 
 
@@ -59,7 +63,7 @@ def adicionar_livro(nome, autor):
     
     # Verifica se o livro já existe
     cursor.execute(
-        'SELECT * FROM livros WHERE nome = %s, %s',
+        'SELECT * FROM livros WHERE nome = %s',
         (nome,)
     )
 
@@ -95,7 +99,7 @@ def buscar_livro(nome):
 
 
 # Marca um livro como emprestado
-def emprestar_livro(nome):
+def emprestar_livro(nome, usuario):
     cursor = conexao.cursor()
 
     # Consulta se o livro existe e se está disponível
@@ -116,8 +120,8 @@ def emprestar_livro(nome):
     
     # Atualiza disponibilidade para emprestado
     cursor.execute(
-        'UPDATE livros SET disponivel = FALSE WHERE nome = %s',
-        (nome,)
+        'UPDATE livros SET disponivel = FALSE, usuario = %s WHERE nome = %s',
+        (usuario, nome)
     )
     
     conexao.commit()
@@ -145,7 +149,7 @@ def devolver_livro(nome):
         return False
 
     cursor.execute(
-        'UPDATE livros SET disponivel = TRUE WHERE nome = %s',
+        'UPDATE livros SET disponivel = TRUE, usuario = NULL WHERE nome = %s',
         (nome,)
     )
 
