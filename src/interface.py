@@ -87,9 +87,7 @@ def abrir(usuario):
         if adicionar_livro(nome, autor):
             mostrar_resultado('Livro adicionado!')
             listar()
-        elif not nome or not autor :
-            mostrar_resultado('Coloque um nome válido')
-            return
+        
         else:
             mostrar_resultado('Livro já existente')
 
