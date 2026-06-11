@@ -84,10 +84,12 @@ def abrir(usuario):
         nome = entrada_livro.get().strip()
         autor = entrada_autor.get().strip()
 
-        if adicionar_livro(nome, autor):
+        if not nome or not autor :
+            mostrar_resultado('Coloque um nome válido')
+            return
+        elif adicionar_livro(nome, autor):
             mostrar_resultado('Livro adicionado!')
             listar()
-        
         else:
             mostrar_resultado('Livro já existente')
 
