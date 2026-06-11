@@ -15,7 +15,7 @@ Criado para praticar desenvolvimento de interfaces, organização de código e m
 ## 📸 Demonstração
 
 <p align="center">
-  <img src="images/foto-sistema-biblioteca-desenvolvendo.png" width="600">
+  <img src='images/foto-system.png" width="600">
 </p>
 
 <p align="center">
