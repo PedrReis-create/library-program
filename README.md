@@ -38,7 +38,7 @@ Criado para praticar desenvolvimento de interfaces, organização de código e m
 
 -  Python 3
 -  Tkinter
--  Banco de dados MySQL (trabalhando nisso)
+-  Banco de dados MySQL
 -  Listas e dicionários
 
 ---
@@ -55,12 +55,12 @@ Criado para praticar desenvolvimento de interfaces, organização de código e m
 
 ## 📂 Estrutura
 
-📁 library-program
+📁 src
 
 ├── login.py → Login e cadastro  
 ├── Interface.py → Interface gráfica  
-└── biblioteca.py → Lógica da biblioteca  
-
+├── biblioteca.py → Lógica da biblioteca  
+└── database.py → Sistema do banco de dados com MySQL
 ---
 
 ## ▶️ Executar
