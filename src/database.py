@@ -1,6 +1,7 @@
 import mysql.connector
 import os
 from dotenv import load_dotenv
+import bcrypt
 
 load_dotenv()
 
@@ -29,18 +30,28 @@ def cadastrar_usuarios(usuario, senha):
     resultado = cursor.fetchone()
     
     # Se encontrou algum usuário, cancela o cadastro
-    if resultado :
+    if resultado:
+        cursor.close()
+        conexao.close()
         return False
     
     # Insere o novo usuário
+    senha_hash = bcrypt.hashpw(
+        senha.encode('utf-8'),
+        bcrypt.gensalt()
+    ).decode('utf-8')
+    
     cursor.execute(
         'INSERT into usuarios (nome, senha) VALUES (%s, %s)',
-        (usuario, senha)
+        (usuario, senha_hash)
     )
     
     # Salva a alteração no banco
     conexao.commit()
-    
+
+    cursor.close()
+    conexao.close()
+
     return True
 
 
@@ -50,14 +61,28 @@ def verificar_usuario(usuario, senha):
     cursor = conexao.cursor()
 
     cursor.execute(
-        'SELECT * FROM usuarios WHERE nome = %s AND senha = %s',
-        (usuario, senha)
+        'SELECT senha FROM usuarios WHERE nome = %s',
+        (usuario,)
     )
 
     resultado = cursor.fetchone()
+
+    cursor.close()
+    conexao.close()
+
+    if resultado is None:
+        return False
     
-    # Retorna True se encontrou o usuário
-    return resultado is not None
+    senha_hash = resultado[0]
+
+    if isinstance(senha_hash, str):
+        senha_hash = senha_hash.encode('utf-8')
+
+    return bcrypt.checkpw(
+        senha.encode('utf-8'),
+        senha_hash
+    )
+    
 
 
 # Adiciona um livro novo no banco
