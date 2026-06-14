@@ -3,7 +3,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3-blue)
 ![Tkinter](https://img.shields.io/badge/Tkinter-GUI-green)
-![MySQL](https://img.shields.io/badge/MySQL)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
 
 <img src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png" width="120">
