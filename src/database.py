@@ -5,17 +5,19 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Conexão com o banco de dados MySQL
-conexao = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    password=os.getenv('MYSQL_PASSWORD'),
-    database='biblioteca',
-    port=3307
-)
+def conectar():
+    return mysql.connector.connect(
+        host='localhost',
+        user='root',
+        password=os.getenv('MYSQL_PASSWORD'),
+        database='biblioteca',
+        port=3307
+    )
 
 
 # Cadastra novos usuários no banco
 def cadastrar_usuarios(usuario, senha):
+    conexao = conectar()
     cursor = conexao.cursor()
     
     # Verifica se o usuário já existe
@@ -44,7 +46,8 @@ def cadastrar_usuarios(usuario, senha):
 
 # Confere se o nome e senha existem para fazer login
 def verificar_usuario(usuario, senha):
-    cursor  = conexao.cursor()
+    conexao = conectar()
+    cursor = conexao.cursor()
 
     cursor.execute(
         'SELECT * FROM usuarios WHERE nome = %s AND senha = %s',
@@ -59,6 +62,7 @@ def verificar_usuario(usuario, senha):
 
 # Adiciona um livro novo no banco
 def adicionar_livro(nome, autor):
+    conexao = conectar()
     cursor = conexao.cursor()
     
     # Verifica se o livro já existe
@@ -86,6 +90,7 @@ def adicionar_livro(nome, autor):
 
 # Busca um livro pelo nome
 def buscar_livro(nome):
+    conexao = conectar()
     cursor = conexao.cursor()
     
     cursor.execute(
@@ -100,6 +105,7 @@ def buscar_livro(nome):
 
 # Marca um livro como emprestado
 def emprestar_livro(nome, usuario):
+    conexao = conectar()
     cursor = conexao.cursor()
 
     # Consulta se o livro existe e se está disponível
@@ -131,6 +137,7 @@ def emprestar_livro(nome, usuario):
 
 # Marca um livro como disponível novamente
 def devolver_livro(nome):
+    conexao = conectar()
     cursor = conexao.cursor()
 
     cursor.execute(
@@ -159,6 +166,7 @@ def devolver_livro(nome):
 
 #Lista os livros existentes
 def listar_livro():
+    conexao = conectar()
     cursor = conexao.cursor()
     
     #Selectiona tudo da coluna livros
