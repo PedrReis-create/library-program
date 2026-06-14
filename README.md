@@ -3,7 +3,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3-blue)
 ![Tkinter](https://img.shields.io/badge/Tkinter-GUI-green)
-![MySQL](https://img.shields.io/badge/MySQL-Working_on-blue)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
 
 <img src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png" width="120">
@@ -38,7 +38,7 @@ Criado para praticar desenvolvimento de interfaces, organização de código e m
 
 -  Python 3
 -  Tkinter
--  Banco de dados MySQL (trabalhando nisso)
+-  Banco de dados MySQL
 -  Listas e dicionários
 
 ---
@@ -55,12 +55,11 @@ Criado para praticar desenvolvimento de interfaces, organização de código e m
 
 ## 📂 Estrutura
 
-📁 library-program
+📁 src
 
 ├── login.py → Login e cadastro  
 ├── Interface.py → Interface gráfica  
-└── biblioteca.py → Lógica da biblioteca  
-
+└── database.py → Sistema do banco de dados com MySQL
 ---
 
 ## ▶️ Executar
