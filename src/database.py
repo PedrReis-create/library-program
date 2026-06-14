@@ -3,9 +3,11 @@ import os
 from dotenv import load_dotenv
 import bcrypt
 
+
 load_dotenv()
 
-# Conexão com o banco de dados MySQL
+
+# Cria uma nova conexão com o banco MySQL
 def conectar():
     return mysql.connector.connect(
         host='localhost',
@@ -16,11 +18,11 @@ def conectar():
     )
 
 
-# Cadastra novos usuários no banco
+# Cadastra um novo usuário com senha criptografada
 def cadastrar_usuarios(usuario, senha):
     conexao = conectar()
     cursor = conexao.cursor()
-    
+
     # Verifica se o usuário já existe
     cursor.execute(
         'SELECT * FROM usuarios WHERE nome = %s',
@@ -28,25 +30,23 @@ def cadastrar_usuarios(usuario, senha):
     )
 
     resultado = cursor.fetchone()
-    
-    # Se encontrou algum usuário, cancela o cadastro
+
     if resultado:
         cursor.close()
         conexao.close()
         return False
-    
-    # Insere o novo usuário
+
+    # Cria hash seguro da senha antes de salvar
     senha_hash = bcrypt.hashpw(
         senha.encode('utf-8'),
         bcrypt.gensalt()
     ).decode('utf-8')
-    
+
     cursor.execute(
-        'INSERT into usuarios (nome, senha) VALUES (%s, %s)',
+        'INSERT INTO usuarios (nome, senha) VALUES (%s, %s)',
         (usuario, senha_hash)
     )
-    
-    # Salva a alteração no banco
+
     conexao.commit()
 
     cursor.close()
@@ -55,7 +55,7 @@ def cadastrar_usuarios(usuario, senha):
     return True
 
 
-# Confere se o nome e senha existem para fazer login
+# Verifica login comparando a senha com o hash salvo
 def verificar_usuario(usuario, senha):
     conexao = conectar()
     cursor = conexao.cursor()
@@ -72,7 +72,7 @@ def verificar_usuario(usuario, senha):
 
     if resultado is None:
         return False
-    
+
     senha_hash = resultado[0]
 
     if isinstance(senha_hash, str):
@@ -82,48 +82,53 @@ def verificar_usuario(usuario, senha):
         senha.encode('utf-8'),
         senha_hash
     )
-    
 
 
-# Adiciona um livro novo no banco
+# Adiciona um novo livro no banco
 def adicionar_livro(nome, autor):
     conexao = conectar()
     cursor = conexao.cursor()
-    
-    # Verifica se o livro já existe
+
+    # Impede cadastro duplicado
     cursor.execute(
         'SELECT * FROM livros WHERE nome = %s',
         (nome,)
     )
 
     resultado = cursor.fetchone()
-    
-    # Impede livros repetidos
-    if resultado :
+
+    if resultado:
+        cursor.close()
+        conexao.close()
         return False
-    
-    # Cadastra o livro como disponível
+
     cursor.execute(
-        'INSERT INTO livros (nome, autor, disponivel) VALUES(%s, %s, %s)',
+        'INSERT INTO livros (nome, autor, disponivel) VALUES (%s, %s, %s)',
         (nome, autor, True)
     )
 
     conexao.commit()
 
+    cursor.close()
+    conexao.close()
+
     return True
 
 
-# Busca um livro pelo nome
+# Busca informações de um livro específico
 def buscar_livro(nome):
     conexao = conectar()
     cursor = conexao.cursor()
-    
+
     cursor.execute(
         'SELECT * FROM livros WHERE nome = %s',
         (nome,)
     )
 
     resultado = cursor.fetchone()
+
+    cursor.close()
+    conexao.close()
 
     return resultado
 
@@ -133,32 +138,37 @@ def emprestar_livro(nome, usuario):
     conexao = conectar()
     cursor = conexao.cursor()
 
-    # Consulta se o livro existe e se está disponível
     cursor.execute(
         'SELECT disponivel FROM livros WHERE nome = %s',
         (nome,)
     )
-    
+
     resultado = cursor.fetchone()
 
-    # Livro não encontrado
+    # Livro inexistente
     if resultado is None:
+        cursor.close()
+        conexao.close()
         return False
-    
-    # Livro já está emprestado
-    elif resultado[0] == False:
+
+    # Livro já emprestado
+    if resultado[0] is False:
+        cursor.close()
+        conexao.close()
         return False
-    
-    # Atualiza disponibilidade para emprestado
+
     cursor.execute(
         'UPDATE livros SET disponivel = FALSE, usuario = %s WHERE nome = %s',
         (usuario, nome)
     )
-    
+
     conexao.commit()
-    
+
+    cursor.close()
+    conexao.close()
+
     return True
-    
+
 
 # Marca um livro como disponível novamente
 def devolver_livro(nome):
@@ -172,12 +182,16 @@ def devolver_livro(nome):
 
     resultado = cursor.fetchone()
 
-    # Livro não existe
+    # Livro inexistente
     if resultado is None:
+        cursor.close()
+        conexao.close()
         return False
 
-    # Livro já está disponível
-    elif resultado[0] == True:
+    # Livro já disponível
+    if resultado[0] is True:
+        cursor.close()
+        conexao.close()
         return False
 
     cursor.execute(
@@ -187,18 +201,24 @@ def devolver_livro(nome):
 
     conexao.commit()
 
+    cursor.close()
+    conexao.close()
+
     return True
 
-#Lista os livros existentes
+
+# Retorna todos os livros cadastrados
 def listar_livro():
     conexao = conectar()
     cursor = conexao.cursor()
-    
-    #Selectiona tudo da coluna livros
+
     cursor.execute(
         'SELECT * FROM livros'
     )
 
     resultado = cursor.fetchall()
+
+    cursor.close()
+    conexao.close()
 
     return resultado
