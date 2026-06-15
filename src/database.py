@@ -221,3 +221,24 @@ def listar_livro():
     conexao.close()
 
     return resultado
+
+# Ver se é usuario ou adm
+def buscar_tipo_usuario(usuario):
+
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute(
+        'SELECT tipo FROM usuarios WHERE nome = %s',
+        (usuario,)
+    )
+
+    resultado = cursor.fetchone()
+
+    cursor.close()
+    conexao.close()
+
+    if resultado:
+        return resultado[0]
+
+    return None
