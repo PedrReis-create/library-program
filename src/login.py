@@ -1,6 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
-from database import cadastrar_usuarios, verificar_usuario
+from database import (
+    cadastrar_usuarios,
+    verificar_usuario,
+    buscar_tipo_usuario
+)
 
 # Inicializar
 janela = tk.Tk()
@@ -28,12 +32,12 @@ janela.geometry(f'{width}x{height}+{pos_x}+{pos_y}')
 janela.resizable(False, False)
 
 
-def abrir_biblioteca(usuario):
+def abrir_biblioteca(usuario, tipo):
     janela.destroy()
 
     import interface
     interface.usuario_atual = usuario
-    interface.abrir(usuario)
+    interface.abrir(usuario, tipo)
 
 
 # Função de cadastro
@@ -53,7 +57,7 @@ def cadastrar():
 
     if cadastrar_usuarios(nome, senha):
         resultado.config(text='Cadastro realizado com sucesso! ')
-        abrir_biblioteca(nome)
+        abrir_biblioteca(nome, "usuario")
     else:
         resultado.config(text='Usuário já existe! ')
 
@@ -68,8 +72,14 @@ def entrar():
         return
 
     if verificar_usuario(nome, senha):
-        resultado.config(text=f"Bem-vindo, {nome}!")
-        abrir_biblioteca(nome)
+
+        tipo = buscar_tipo_usuario(nome)
+
+        resultado.config(
+            text=f"Bem-vindo, {nome}!"
+        )
+
+        abrir_biblioteca(nome, tipo)
     else:
         resultado.config(text="Nome ou senha incorretos!")
 
