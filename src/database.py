@@ -121,10 +121,9 @@ def buscar_livro(nome):
     cursor = conexao.cursor()
 
     cursor.execute(
-        'SELECT * FROM livros WHERE nome = %s',
-        (nome,)
+    'SELECT * FROM livros WHERE nome LIKE %s',
+    (f'%{nome}%',)
     )
-
     resultado = cursor.fetchone()
 
     cursor.close()
