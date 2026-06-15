@@ -52,9 +52,11 @@ def abrir(usuario):
 
 
     def emprestar():
-
+        
         nome = entrada_livro.get().strip()
-
+        if not nome:
+            mostrar_resultado('Digite um livro!')
+            return
         if usuario is None:
             mostrar_resultado('Faça login primeiro!')
             return
