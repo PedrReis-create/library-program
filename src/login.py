@@ -44,7 +44,7 @@ def cadastrar():
     if not nome or not senha :
         resultado.config(text='Preencha todos os campos! ')
         return
-    if len(senha) < 4 :
+    if len(senha) < 8 :
         resultado.config(text='Crie uma senha com mais de 4 dígitos! ')
         return
     elif len(senha) > 20 :
