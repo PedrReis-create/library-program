@@ -9,7 +9,7 @@ from database import (
 )
 
 
-def abrir(usuario):
+def abrir(usuario, tipo):
 
     myApp = Tk()
 
@@ -218,7 +218,12 @@ def abrir(usuario):
         y=120,
         width=90
     )
+    
+    if tipo != "admin":
 
+        botao4.config(
+            state="disabled"
+        )
 
     botao5 = ttk.Button(
         myApp,
