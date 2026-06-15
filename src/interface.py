@@ -44,8 +44,10 @@ def abrir(usuario):
         livro = buscar_livro(nome)
 
         if livro:
+            status = 'Disponível' if livro[3] else f'Emprestado por {livro[4]}'
+
             mostrar_resultado(
-                f'Nome: {livro[1]}\nAutor: {livro[2]}'
+                f'Nome: {livro[1]}\nAutor: {livro[2]}\nStatus: {status}'
             )
         else:
             mostrar_resultado('Livro não encontrado!')
@@ -301,5 +303,6 @@ def abrir(usuario):
         height=150
     )
 
+    listar()
 
     myApp.mainloop()
