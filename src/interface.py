@@ -16,8 +16,8 @@ def abrir(usuario, tipo):
     myApp.title("Biblioteca")
     myApp.iconbitmap("book.ico")
 
-    largura = 600
-    altura = 400
+    largura = 900
+    altura = 500
 
     largura_tela = myApp.winfo_screenwidth()
     altura_tela = myApp.winfo_screenheight()
@@ -243,10 +243,10 @@ def abrir(usuario, tipo):
     )
 
     resultado_label.place(
-    x=60,
-    y=270,
+    x=330,
+    y=180,
     width=250,
-    height=80
+    height=30
     )
 
 
@@ -300,10 +300,10 @@ def abrir(usuario, tipo):
 
 
     tabela.place(
-    x=320,
-    y=270,
-    width=520,
-    height=150
+    x=40,
+    y=230,
+    width=820,
+    height=200
     )
 
     listar()
