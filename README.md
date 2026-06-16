@@ -1,5 +1,7 @@
 # 📚 Sistema de Gerenciamento de Biblioteca
 
+### Desktop Library Management System using Python, Tkinter and MySQL
+
 ![Python](https://img.shields.io/badge/Python-3-blue)
 ![Tkinter](https://img.shields.io/badge/Tkinter-GUI-green)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
@@ -7,9 +9,9 @@
 
 <img src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png" width="120">
 
-Sistema de gerenciamento de biblioteca desenvolvido em **Python** com interface gráfica utilizando **Tkinter**.
+Sistema desktop para gerenciamento de bibliotecas desenvolvido em **Python**, utilizando **Tkinter** para interface gráfica e **MySQL** para persistência de dados.
 
-Criado para praticar desenvolvimento de interfaces, organização de código e manipulação de dados.
+O sistema possui autenticação de usuários, criptografia de senhas, controle de permissões, gerenciamento de livros e operações de empréstimo e devolução.
 
 ---
 
