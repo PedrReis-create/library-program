@@ -49,7 +49,7 @@ def cadastrar():
         resultado.config(text='Preencha todos os campos! ')
         return
     if len(senha) < 8 :
-        resultado.config(text='Crie uma senha com mais de 4 dígitos! ')
+        resultado.config(text='Crie uma senha com mais de 8 dígitos! ')
         return
     elif len(senha) > 20 :
         resultado.config(text='Crie uma senha com menos de 20 dígitos! ')
