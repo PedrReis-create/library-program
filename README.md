@@ -1,4 +1,3 @@
-
 # 📚 Sistema de Gerenciamento de Biblioteca
 
 ![Python](https://img.shields.io/badge/Python-3-blue)
@@ -12,10 +11,12 @@ Sistema de gerenciamento de biblioteca desenvolvido em **Python** com interface 
 
 Criado para praticar desenvolvimento de interfaces, organização de código e manipulação de dados.
 
+---
+
 ## 📸 Demonstração
 
 <p align="center">
-  <img src="images/foto-system.png" width="600">
+  <img src="images/foto-biblioteca.png" width="600">
 </p>
 
 <p align="center">
@@ -26,20 +27,21 @@ Criado para praticar desenvolvimento de interfaces, organização de código e m
 
 ## ⚙️ Funcionalidades
 
--  Cadastro e login de usuários
--  Busca de livros
--  Empréstimos e devoluções
--  Cadastro de novos livros
--  Controle de disponibilidade
+- Cadastro e login de usuários
+- Busca de livros
+- Empréstimos e devoluções
+- Cadastro de novos livros
+- Controle de disponibilidade
 
 ---
 
-##  Tecnologias
+## 🛠 Tecnologias
 
--  Python 3
--  Tkinter
--  Banco de dados MySQL
--  Listas e dicionários
+- Python 3
+- Tkinter
+- MySQL
+- Bcrypt
+- Python-dotenv
 
 ---
 
@@ -57,33 +59,56 @@ Criado para praticar desenvolvimento de interfaces, organização de código e m
 
 📁 src
 
+├── main.py → Arquivo principal  
 ├── login.py → Login e cadastro  
-├── Interface.py → Interface gráfica  
+├── interface.py → Interface gráfica  
 └── database.py → Sistema do banco de dados com MySQL
+
 ---
 
 ## ▶️ Executar
 
+Clone o projeto:
+
+```bash
+git clone https://github.com/PedrReis-create/library-program
+```
+
+Entre na pasta:
+
+```bash
+cd library-program
+```
+
+Instale as dependências:
+
+```bash
+pip install -r requirements.txt
+```
+
 Execute o arquivo principal:
 
-`python login.py`
+```bash
+python src/main.py
+```
 
 ---
 
-##  Aprendizados
+## 📚 Aprendizados
 
 - Programação modular
 - Interfaces gráficas com Tkinter
-- Manipulação de arquivos
-- Sistema de autenticação simples
+- Integração Python + MySQL
+- Sistema de autenticação com criptografia de senha
+- Organização de dependências do projeto
 
 ---
 
-##  Próximas Melhorias
+## 🚀 Próximas Melhorias
 
-- Criptografia de senhas
 - Histórico de empréstimos
-- Sistema de permissões
+- Sistema avançado de permissões
+- Melhorias na interface gráfica
 
 ---
 
@@ -113,5 +138,3 @@ Execute o arquivo principal:
 ---
 
 ⭐ Projeto desenvolvido para evolução e prática em Python.
-
-
