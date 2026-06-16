@@ -43,12 +43,22 @@ def abrir(usuario, tipo):
 
         livro = buscar_livro(nome)
 
-        if livro:
-            status = 'Disponível' if livro[3] else f'Emprestado por {livro[4]}'
+        for item in tabela.get_children():
+            tabela.delete(item)
 
-            mostrar_resultado(
-                f'Nome: {livro[1]}\nAutor: {livro[2]}\nStatus: {status}'
+        if livro:
+
+            tabela.insert(
+                '',
+                END,
+                values=(
+                    livro[1],
+                    livro[2],
+                    'Disponível' if livro[3] else 'Emprestado',
+                    livro[4]
+                )
             )
+
         else:
             mostrar_resultado('Livro não encontrado!')
 
@@ -233,10 +243,10 @@ def abrir(usuario, tipo):
     )
 
     resultado_label.place(
-    x=150,
-    y=155,
-    width=300,
-    height=35
+    x=60,
+    y=270,
+    width=250,
+    height=80
     )
 
 
@@ -290,8 +300,8 @@ def abrir(usuario, tipo):
 
 
     tabela.place(
-    x=40,
-    y=220,
+    x=320,
+    y=270,
     width=520,
     height=150
     )
