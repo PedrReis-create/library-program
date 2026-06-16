@@ -224,20 +224,7 @@ def abrir(usuario, tipo):
         botao4.config(
             state="disabled"
         )
-
-    botao5 = ttk.Button(
-        myApp,
-        text='Listar',
-        command=listar
-    )
-
-    botao5.place(
-        x=460,
-        y=120,
-        width=80
-    )
-
-
+        
     resultado_label = Label(
         myApp,
         text='',
@@ -246,9 +233,10 @@ def abrir(usuario, tipo):
     )
 
     resultado_label.place(
-        x=150,
-        y=160,
-        width=300
+    x=150,
+    y=155,
+    width=300,
+    height=35
     )
 
 
@@ -302,10 +290,10 @@ def abrir(usuario, tipo):
 
 
     tabela.place(
-        x=40,
-        y=200,
-        width=520,
-        height=150
+    x=40,
+    y=220,
+    width=520,
+    height=150
     )
 
     listar()
