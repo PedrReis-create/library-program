@@ -57,12 +57,18 @@ Criado para praticar desenvolvimento de interfaces, organização de código e m
 
 ## 📂 Estrutura
 
-📁 src
+📁 library-program
 
-├── main.py → Arquivo principal  
-├── login.py → Login e cadastro  
-├── interface.py → Interface gráfica  
-└── database.py → Sistema do banco de dados com MySQL
+├── src  
+│   ├── main.py → Arquivo principal  
+│   ├── login.py → Login e cadastro  
+│   ├── interface.py → Interface gráfica  
+│   └── database.py → Sistema do banco de dados com MySQL  
+│  
+├── images → Imagens do projeto  
+├── .env.example → Modelo de configuração  
+├── requirements.txt → Dependências  
+└── README.md  
 
 ---
 
@@ -86,11 +92,32 @@ Instale as dependências:
 pip install -r requirements.txt
 ```
 
+Configure as variáveis de ambiente.
+
+Crie um arquivo `.env` baseado no `.env.example`:
+
+```env
+MYSQL_HOST=localhost
+MYSQL_USER=root
+MYSQL_PASSWORD=sua_senha
+MYSQL_DATABASE=biblioteca
+MYSQL_PORT=3307
+```
+
 Execute o arquivo principal:
 
 ```bash
 python src/main.py
 ```
+
+---
+
+## 🔒 Segurança
+
+- Senhas protegidas utilizando bcrypt
+- Variáveis sensíveis armazenadas em `.env`
+- Arquivo `.env.example` para configuração segura do ambiente
+- Controle de permissões entre usuário e administrador
 
 ---
 
@@ -100,6 +127,7 @@ python src/main.py
 - Interfaces gráficas com Tkinter
 - Integração Python + MySQL
 - Sistema de autenticação com criptografia de senha
+- Uso de variáveis de ambiente
 - Organização de dependências do projeto
 
 ---
