@@ -239,6 +239,6 @@ def buscar_tipo_usuario(usuario):
     conexao.close()
 
     if resultado:
-        return resultado[0]
+        return resultado[0].lower().strip()
 
     return None
