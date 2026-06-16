@@ -28,9 +28,10 @@ Criado para praticar desenvolvimento de interfaces, organização de código e m
 ## ⚙️ Funcionalidades
 
 - Cadastro e login de usuários
+- Sistema de permissões (administrador/usuário)
 - Busca de livros
 - Empréstimos e devoluções
-- Cadastro de novos livros
+- Cadastro de novos livros por administradores
 - Controle de disponibilidade
 
 ---
@@ -42,6 +43,7 @@ Criado para praticar desenvolvimento de interfaces, organização de código e m
 - MySQL
 - Bcrypt
 - Python-dotenv
+- Controle de acesso por permissões
 
 ---
 
@@ -135,7 +137,7 @@ python src/main.py
 ## 🚀 Próximas Melhorias
 
 - Histórico de empréstimos
-- Sistema avançado de permissões
+- Gerenciamento completo de usuários
 - Melhorias na interface gráfica
 
 ---

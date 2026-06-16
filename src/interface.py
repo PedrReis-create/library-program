@@ -94,7 +94,12 @@ def abrir(usuario, tipo):
 
 
     def adicionar():
-
+        if tipo != "admin":
+            mostrar_resultado(
+                "Apenas administradores podem adicionar livros!"
+            )
+            return
+        
         nome = entrada_livro.get().strip()
         autor = entrada_autor.get().strip()
 
