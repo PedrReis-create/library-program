@@ -144,6 +144,10 @@ def abrir(usuario, tipo):
 
         livros = listar_livro()
 
+        contador_label.config(
+            text=f'Total de livros: {len(livros)}'
+        )
+
         for livro in livros:
 
             tabela.insert(
@@ -288,7 +292,18 @@ def abrir(usuario, tipo):
     width=250,
     height=30
     )
+    
+    contador_label = Label(
+    myApp,
+    text='Total de livros: 0',
+    bg='white',
+    font=('Arial', 10)
+    )
 
+    contador_label.place(
+        x=40,
+        y=440
+    )
 
     tabela = ttk.Treeview(
         myApp,
