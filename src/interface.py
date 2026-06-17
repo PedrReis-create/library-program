@@ -101,6 +101,21 @@ def abrir(usuario, tipo):
 
         else:
             mostrar_resultado('Não foi possível emprestar!')
+    
+    # Double click -> copia no input
+    def on_double_click(event):
+        selected = tabela.selection()
+        if not selected:
+            return
+        selected_item = selected[0]
+        
+        item_values = tabela.item(selected_item, 'values')
+        
+        entrada_livro.delete(0, END)
+        entrada_livro.insert(0, item_values[0])
+        entrada_autor.delete(0, END)
+        entrada_autor.insert(0, item_values[1])
+        
 
 
     def devolver():
@@ -310,7 +325,7 @@ def abrir(usuario, tipo):
         columns=('Nome', 'Autor', 'Status', 'Usuario'),
         show='headings'
     )
-
+    tabela.bind("<Double-1>", on_double_click)
 
     tabela.heading(
         'Nome',
