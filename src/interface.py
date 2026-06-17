@@ -35,6 +35,10 @@ def abrir(usuario, tipo):
 
     def mostrar_resultado(texto):
         resultado_label.config(text=texto)
+    def limpar_campos():
+
+        entrada_livro.delete(0, END)
+        entrada_autor.delete(0, END)
 
 
     def procurar_livro():
@@ -75,6 +79,7 @@ def abrir(usuario, tipo):
 
         elif emprestar_livro(nome, usuario):
             mostrar_resultado('Livro emprestado!')
+            limpar_campos()
             listar()
 
         else:
@@ -87,6 +92,7 @@ def abrir(usuario, tipo):
 
         if devolver_livro(nome):
             mostrar_resultado('Livro devolvido!')
+            limpar_campos()
             listar()
 
         else:
@@ -108,6 +114,7 @@ def abrir(usuario, tipo):
             return
         elif adicionar_livro(nome, autor):
             mostrar_resultado('Livro adicionado!')
+            limpar_campos()
             listar()
         else:
             mostrar_resultado('Livro já existente')
