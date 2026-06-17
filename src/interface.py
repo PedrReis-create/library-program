@@ -42,7 +42,14 @@ def abrir(usuario, tipo):
     # =================
     # Funções
     # =================
+    
+    def sair():
 
+        myApp.destroy()
+
+        print('Obrigado por usar nosso sistema')
+
+    
     def mostrar_resultado(texto):
         resultado_label.config(text=texto)
     def limpar_campos():
@@ -199,6 +206,17 @@ def abrir(usuario, tipo):
         height=25
     )
 
+    botao_sair = ttk.Button(
+    myApp,
+    text='Sair',
+    command=sair
+    )
+
+    botao_sair.place(
+        x=760,
+        y=60,
+        width=90
+    )
 
     botao1 = ttk.Button(
         myApp,
