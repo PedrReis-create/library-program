@@ -28,7 +28,17 @@ def abrir(usuario, tipo):
     myApp.geometry(f"{largura}x{altura}+{x}+{y}")
     myApp.configure(background='white')
 
+    usuario_label = Label(
+        myApp,
+        text=f'Logado: {usuario} ({tipo})',
+        bg='white',
+        font=('Arial', 10, 'bold')
+    )
 
+    usuario_label.place(
+        x=650,
+        y=20
+    )
     # =================
     # Funções
     # =================
