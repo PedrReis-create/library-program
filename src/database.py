@@ -131,6 +131,17 @@ def buscar_livro(nome):
 
     return resultado
 
+def registrar_emprestimo(cursor, id_livro, usuario):
+    
+    cursor.execute(
+        '''
+        INSERT INTO historico_emprestimos
+        (id_livro, usuario)
+        VALUES (%s, %s)
+        ''',
+        (id_livro, usuario)
+    )
+    
 
 # Marca um livro como emprestado
 def emprestar_livro(nome, usuario):
@@ -138,7 +149,7 @@ def emprestar_livro(nome, usuario):
     cursor = conexao.cursor()
 
     cursor.execute(
-        'SELECT disponivel FROM livros WHERE nome = %s',
+        'SELECT id_livro, disponivel FROM livros WHERE nome = %s',
         (nome,)
     )
 
@@ -149,18 +160,25 @@ def emprestar_livro(nome, usuario):
         cursor.close()
         conexao.close()
         return 'Livro inexistente'
-
+    
+    
+    id_livro = resultado[0]
+    disponivel = resultado[1]
+    
+    
     # Livro já emprestado
-    if not resultado[0]:
+    if not disponivel:
         cursor.close()
         conexao.close()
         return 'Livro já emprestado'
 
     cursor.execute(
-        'UPDATE livros SET disponivel = FALSE, usuario = %s WHERE nome = %s',
-        (usuario, nome)
+        'UPDATE livros SET disponivel = FALSE, usuario = %s WHERE id_livro = %s',
+        (usuario, id_livro)
     )
-
+    
+    registrar_emprestimo(cursor, id_livro, usuario)
+    
     conexao.commit()
 
     cursor.close()
@@ -175,7 +193,7 @@ def devolver_livro(nome, usuario):
     cursor = conexao.cursor()
     
     cursor.execute(
-        'SELECT disponivel, usuario FROM livros WHERE nome = %s',
+        'SELECT id_livro, disponivel, usuario FROM livros WHERE nome = %s',
         (nome,)
     )
 
@@ -186,24 +204,29 @@ def devolver_livro(nome, usuario):
         cursor.close()
         conexao.close()
         return 'Livro inexistente'
-
+    
+    id_livro = resultado[0]
+    disponivel = resultado[1]
+    dono_livro = resultado[2]
+    
     # Livro já disponível
-    if resultado[0]:
+    if disponivel:
         cursor.close()
         conexao.close()
         return 'Livro já está disponível'
 
-    if resultado[1] != usuario:
+    if dono_livro != usuario:
         cursor.close()
         conexao.close()
         return 'Esse livro pertence a outro usuário'
 
 
     cursor.execute(
-        'UPDATE livros SET disponivel = TRUE, usuario = NULL WHERE nome = %s',
-        (nome,)
+        'UPDATE livros SET disponivel = TRUE, usuario = NULL WHERE id_livro = %s',
+        (id_livro,)
     )
 
+    finalizar_emprestimo(cursor, id_livro)
     conexao.commit()
 
     cursor.close()
@@ -211,7 +234,17 @@ def devolver_livro(nome, usuario):
 
     return 'Livro devolvido com sucesso'
 
+def finalizar_emprestimo(cursor, id_livro):
 
+    cursor.execute(
+        '''
+        UPDATE historico_emprestimos
+        SET data_devolucao = NOW()
+        WHERE id_livro = %s
+        AND data_devolucao IS NULL
+        ''',
+        (id_livro,)
+    )
 # Retorna todos os livros cadastrados
 def listar_livro():
     conexao = conectar()
