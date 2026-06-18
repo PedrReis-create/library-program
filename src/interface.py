@@ -69,38 +69,44 @@ def abrir(usuario, tipo):
 
         if livro:
 
-            tabela.insert(
-                '',
-                END,
-                values=(
-                    livro[1],
-                    livro[2],
-                    'Disponível' if livro[3] else 'Emprestado',
-                    livro[4]
+            for livro in livro :
+                
+                tabela.insert(
+                    '',
+                    END,
+                    values=(
+                        livro[1],
+                        livro[2],
+                        'Disponível' if livro[3] else 'Emprestado',
+                        livro[4]
+                    )
                 )
-            )
 
         else:
             mostrar_resultado('Livro não encontrado!')
 
 
     def emprestar():
-        
+
         nome = entrada_livro.get().strip()
+
         if not nome:
             mostrar_resultado('Digite um livro!')
             return
+
         if usuario is None:
             mostrar_resultado('Faça login primeiro!')
             return
 
-        elif emprestar_livro(nome, usuario):
-            mostrar_resultado('Livro emprestado!')
+        resultado = emprestar_livro(nome, usuario)
+
+        if resultado == 'Emprestado com sucesso':
+            mostrar_resultado(resultado)
             limpar_campos()
             listar()
 
         else:
-            mostrar_resultado('Não foi possível emprestar!')
+            mostrar_resultado(resultado)
     
     # Double click -> copia no input
     def on_double_click(event):
@@ -121,35 +127,49 @@ def abrir(usuario, tipo):
     def devolver():
 
         nome = entrada_livro.get().strip()
-
-        if devolver_livro(nome):
-            mostrar_resultado('Livro devolvido!')
+        if not nome :
+            mostrar_resultado('Digite um livro')
+            return
+        
+        if usuario is None:
+            mostrar_resultado('Faça login primeiro!')
+            return
+        
+        resultado = devolver_livro(nome, usuario)
+        
+        if resultado == 'Livro devolvido com sucesso':
+            mostrar_resultado(resultado)
             limpar_campos()
             listar()
 
         else:
-            mostrar_resultado('Não foi possível devolver!')
+            mostrar_resultado(resultado)
 
 
     def adicionar():
+
         if tipo != "admin":
             mostrar_resultado(
                 "Apenas administradores podem adicionar livros!"
             )
             return
-        
+            
         nome = entrada_livro.get().strip()
         autor = entrada_autor.get().strip()
 
-        if not nome or not autor :
+        if not nome or not autor:
             mostrar_resultado('Coloque um nome válido')
             return
-        elif adicionar_livro(nome, autor):
-            mostrar_resultado('Livro adicionado!')
+
+        resultado = adicionar_livro(nome, autor)
+
+        if resultado == 'Livro adicionado com sucesso':
+            mostrar_resultado(resultado)
             limpar_campos()
             listar()
+
         else:
-            mostrar_resultado('Livro já existente')
+            mostrar_resultado(resultado)
 
 
     def listar():
