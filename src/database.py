@@ -20,7 +20,11 @@ def conectar():
 
 # Cadastra um novo usuário com senha criptografada
 def cadastrar_usuarios(usuario, senha):
-    conexao = conectar()
+    try:
+        conexao = conectar()
+    
+    except mysql.connector.Error:
+        return "Erro no servidor"
     cursor = conexao.cursor()
 
     # Verifica se o usuário já existe
@@ -57,7 +61,12 @@ def cadastrar_usuarios(usuario, senha):
 
 # Verifica login comparando a senha com o hash salvo
 def verificar_usuario(usuario, senha):
-    conexao = conectar()
+    try:
+        conexao = conectar()
+    
+    except mysql.connector.Error:
+        return "Erro no servidor"
+    
     cursor = conexao.cursor()
 
     cursor.execute(
@@ -86,7 +95,12 @@ def verificar_usuario(usuario, senha):
 
 # Adiciona um novo livro no banco
 def adicionar_livro(nome, autor):
-    conexao = conectar()
+    try:
+        conexao = conectar()
+    
+    except mysql.connector.Error:
+        return "Erro no servidor"
+    
     cursor = conexao.cursor()
 
     # Impede cadastro duplicado
@@ -117,7 +131,12 @@ def adicionar_livro(nome, autor):
 
 # Busca informações de um livro específico
 def buscar_livro(nome):
-    conexao = conectar()
+    try:
+        conexao = conectar()
+    
+    except mysql.connector.Error:
+        return "Erro no servidor"
+    
     cursor = conexao.cursor()
 
     cursor.execute(
@@ -145,7 +164,12 @@ def registrar_emprestimo(cursor, id_livro, usuario):
 
 # Marca um livro como emprestado
 def emprestar_livro(nome, usuario):
-    conexao = conectar()
+    try:
+        conexao = conectar()
+    
+    except mysql.connector.Error:
+        return "Erro no servidor"
+    
     cursor = conexao.cursor()
 
     cursor.execute(
@@ -189,7 +213,12 @@ def emprestar_livro(nome, usuario):
 
 # Marca um livro como disponível novamente
 def devolver_livro(nome, usuario):
-    conexao = conectar()
+    try:
+        conexao = conectar()
+    
+    except mysql.connector.Error:
+        return "Erro no servidor"
+    
     cursor = conexao.cursor()
     
     cursor.execute(
@@ -247,7 +276,12 @@ def finalizar_emprestimo(cursor, id_livro):
     )
 # Retorna todos os livros cadastrados
 def listar_livro():
-    conexao = conectar()
+    try:
+        conexao = conectar()
+    
+    except mysql.connector.Error:
+        return []
+    
     cursor = conexao.cursor()
 
     cursor.execute(
@@ -262,7 +296,12 @@ def listar_livro():
     return resultado
 
 def listar_historico():
-    conexao = conectar()
+    try:
+        conexao = conectar()
+    
+    except mysql.connector.Error:
+        return []
+    
     cursor = conexao.cursor()
     
     cursor.execute(
@@ -289,7 +328,12 @@ def listar_historico():
 # Ver se é usuario ou adm
 def buscar_tipo_usuario(usuario):
 
-    conexao = conectar()
+    try:
+        conexao = conectar()
+    
+    except mysql.connector.Error:
+        return "Erro no servidor"
+    
     cursor = conexao.cursor()
 
     cursor.execute(
