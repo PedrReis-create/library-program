@@ -5,7 +5,8 @@ from database import (
     buscar_livro,
     emprestar_livro,
     devolver_livro,
-    listar_livro
+    listar_livro,
+    listar_historico
 )
 
 
@@ -85,7 +86,26 @@ def abrir(usuario, tipo):
         else:
             mostrar_resultado('Livro não encontrado!')
 
-
+    def mostrar_historico():
+        
+        for item in tabela.get_children():
+            tabela.delete(item)
+            
+        historico = listar_historico()
+        
+        for item in historico:
+            
+            tabela.insert(
+                '',
+                END,
+                values =(
+                    item[0],
+                    item[1],
+                    item[2],
+                    item[3]
+                ) 
+                
+            )
     def emprestar():
 
         nome = entrada_livro.get().strip()
@@ -244,7 +264,17 @@ def abrir(usuario, tipo):
         width=250,
         height=25
     )
-
+    botao_historico = ttk.Button(
+        myApp,
+        text='Histórico',
+        command=mostrar_historico
+    )
+    
+    botao_historico.place(
+        x=460,
+        y=120,
+        width=90
+    )
     botao_sair = ttk.Button(
     myApp,
     text='Sair',
