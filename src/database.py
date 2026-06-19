@@ -261,6 +261,31 @@ def listar_livro():
 
     return resultado
 
+def listar_historico():
+    conexao = conectar()
+    cursor = conexao.cursor()
+    
+    cursor.execute(
+        '''
+        SELECT
+            livros.nome,
+            historico_emprestimos.usuario,
+            historico_emprestimos.data_emprestimo,
+            historico_emprestimos.data_devolucao
+            
+        FROM historico_emprestimos
+        
+        INNER JOIN livros
+        ON historico_emprestimos.id_livro = livros.id_livro
+        '''
+    )
+    
+    resultado = cursor.fetchall()
+    
+    cursor.close()
+    conexao.close()
+    
+    return resultado
 # Ver se é usuario ou adm
 def buscar_tipo_usuario(usuario):
 
