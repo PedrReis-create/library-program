@@ -136,14 +136,6 @@ python src/main.py
 
 ---
 
-## 🚀 Próximas Melhorias
-
-- Histórico de empréstimos
-- Gerenciamento completo de usuários
-- Melhorias na interface gráfica
-
----
-
 ## 👥 Equipe de Desenvolvimento
 
 <table>
